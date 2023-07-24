@@ -1,6 +1,7 @@
 <?php
 namespace app\core;
 
+use http\Params;
 use PDO;
 use PDOException;
 
@@ -31,5 +32,24 @@ protected function query($sql, $params = [])
     }
     $query -> execute();
     return $query;
+}
+protected function select($sql, $params = [])
+{
+    $result = $this -> query($sql, $params);
+    return $result -> fetchAll(PDO::FETCH_ASSOC);
+}
+protected function insert($sql, $params = []){
+        $this -> query($sql, $params);
+        return (int)$this -> db -> lastInsertId();
+}
+protected function update($sql, $params)
+{
+    $query = $this->query($sql, $params);
+    return $query -> rowCount();
+
+}
+protected function delete($sql, $params = []){
+        $query = $this -> query($sql, $params);
+        return $query -> rowCount();
 }
 }
