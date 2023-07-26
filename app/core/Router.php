@@ -58,7 +58,7 @@ public function match()
     }
     foreach ($behaviors['access']['rules'] as $rule){
         if (in_array($this -> params['action'], $rule['actions'])){
-            if (in_array(UserOperations::getRoleUser(), $rule['rules'])) {
+            if (in_array(UserOperations::getRoleUser(), $rule['roles'])) {
                 return true;
             } else {
                 if (isset($rule['matchCallback'])){

@@ -16,4 +16,29 @@ public static function getRoleUser()
     }
     return $result;
 }
+public static function getMenuLinks(){
+    $role = self::getRoleUser();
+    $list[] = [
+        'title' => 'Мой профиль',
+        'link' => '/user/profile'
+    ];
+
+    $list[] = [
+        'title' => 'Новости',
+        'link' => '/news/list'
+    ];
+    if($role === self::RoleAdmin){
+        $list[] = [
+          'title' => 'Пользователи',
+            'link' => '/user/users'
+        ];
+    }
+    $list[] = [
+        'title' => 'Выход',
+        'link' => '/user/logout'
+    ];
+
+    return $list;
+
+    }
 }
